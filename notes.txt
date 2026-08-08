@@ -3,3 +3,8 @@ today i learned:
 git init
 git add
 git commit
+
+repository mahale zakhire file haye proje
+staging مرحله قبل از کامیت شدن
+commit har marhale ke save mishe , mishe bargardim behesh o varede tarikhche mishe
+git is useful
