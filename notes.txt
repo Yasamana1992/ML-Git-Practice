@@ -10,4 +10,6 @@ commit har marhale ke save mishe , mishe bargardim behesh o varede tarikhche mis
 git is useful 
 
 Day 25 i learned branch 
-mentor explain branchto me
+mentor explain branch to me
+
+i test new commit on branch now
