@@ -12,4 +12,4 @@ git is useful
 Day 25 i learned branch 
 mentor explain branch to me
 
-i test merge last Day
+i'm on branch to make conflict in merge
