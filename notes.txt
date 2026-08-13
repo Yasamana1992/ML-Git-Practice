@@ -13,3 +13,6 @@ Day 25 i learned branch
 mentor explain branch to me
 
 che khar tu khari shod
+
+day 29 
+test push & pull
