@@ -1,5 +1,3 @@
-from collections import Counter
-
 word_list = input("please input your text: ").strip().lower().split()
 word = word_list[0]
 count = 0
