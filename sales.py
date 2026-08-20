@@ -10,7 +10,15 @@ while True:
 sales = []
 
 for i in range(num):
-    sales.append({"product" : input("Name of product: "), "price" : int(input("Price: "))})
+    product = input("Name of product: ").strip().lower()
+    valid = False
+    while valid==False:
+        try:
+            price = int(input("Price: "))
+            valid = True
+        except ValueError:
+            print("number please")
+    sales.append({"product" : product, "price" : price})
 
 df = pd.DataFrame(sales)
 
