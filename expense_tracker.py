@@ -21,28 +21,40 @@ for i in range(cnt):
     expenses.append({"category" : category, "amount" : amount})    
 
 df = pd.DataFrame(expenses)
+print("============= EXPENSE REPORT =============", "\n")
+print("Total expenses: ", cnt)
 
 s = df["amount"].sum()
-print("Total: ", s)
+print("Total amount: ", s)
 
 avg = df["amount"].mean()
-print("Average: ", avg)
+print("Average expense: ", avg, "\n")
 
 maxi = df["amount"].idxmax()
-print("Highest expense: ", df.loc[maxi, "category"] , df.loc[maxi, "amount"])
+print("Highest expense: " +"\n"+ "Category: "+ df.loc[maxi, "category"] + "\n"+ "Amount:", df.loc[maxi, "amount"] , "\n")
 mini = df["amount"].idxmin()
-print("Lowest expense: ", df.loc[mini, "category"] , df.loc[mini, "amount"])
+print("Lowest expense: "+ "\n"+ "Category: " + df.loc[mini, "category"] + "\n"+ "Amount:" , df.loc[mini, "amount"] , "\n")
+print("----- By Category -----" + "\n")
 
-print(df.groupby("category")["amount"].count())
-sum_cat = df.groupby("category")["amount"].sum()
-print(sum_cat)
+cdf = pd.Series(df.groupby("category")["amount"].count(), name="Count")
+sdf = pd.Series(df.groupby("category")["amount"].sum(), name="Total")
+mdf = pd.Series(df.groupby("category")["amount"].mean(), name="Average")
+prc = sdf * 100 / s
+percentage = pd.Series(prc, name="Percentage")
 
-sum_df = pd.Series(sum_cat)
 
-max_sum = sum_df.max()
-max_cat = sum_df.idxmax()
-print("Highest spending category: "+ max_cat)
-print("Total:", max_sum)
+count_df = pd.DataFrame(cdf)
+sum_df = pd.DataFrame(sdf)
+mean_df = pd.DataFrame(mdf)
+prc_df = pd.DataFrame(percentage)
+
+frames = [count_df, sum_df, mean_df, prc_df]
+table = pd.concat(frames, axis=1)
+print(table)
+print("==========================================", "\n")
+
+print("Highest spending category: ", sdf.idxmax())
+print("Amount:", sdf.max(), "\n")
 
 categories = list(df["category"])
 
