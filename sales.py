@@ -7,79 +7,107 @@ while True:
     except ValueError:
         print("number please")
 
-sales = []
+#get data from user and make list of dictionaries
 
+sales = []
 for i in range(num):
     product = input("Name of product: ").strip().lower()
     valid = False
     while valid==False:
+        try:
+            quantity = int(input("Number of sales of this product: "))
+            valid = True
+        except ValueError:
+            print("number please")
+    valid = False
+    while valid==False:
         price = input("Price: ")
-        number = price.isnumeric()
-        if number==True:           
+        if price.isnumeric():
+            price = int(price)  
+            revenue = price * quantity       
             valid = True
         else:
-            q = input("If price of this item is not available, press y").strip().lower()
-            if q == 'y':
+            a = input("If price of this item is not available, press y").strip().lower()
+            if a == 'y':
                 valid = True
                 price = "not_available"
-        
-    sales.append({"product" : product, "price" : price})
+                revenue = "not_available"
+    sales.append({"product" : product, "price" : price, "quantity" : quantity, "revenue" : revenue})
 
+#making pandas dataframe and cleaning data
 df = pd.DataFrame(sales)
-clean_df = df
+clean_df = df.copy()
 
-clean_df["price"] = pd.to_numeric(df["price"], errors="coerce")
+clean_df["price"] = pd.to_numeric(clean_df["price"], errors="coerce")
+clean_df = clean_df.dropna(subset=["price"])
 
-clean_df = df.dropna(subset=["price"])
+# sorting
+clean_df = clean_df.sort_values(by=["revenue"], ascending=False)
 
-total = clean_df["price"].sum()
-avg = clean_df["price"].mean()
-#maxi = clean_df["price"].idxmax()
-#mini = clean_df["price"].idxmin()
+# report calculating 
 
-cdf = pd.Series(clean_df.groupby("product")["price"].count(), name="Count")
-sdf = pd.Series(clean_df.groupby("product")["price"].sum(), name="Sum")
-mdf = pd.Series(clean_df.groupby("product")["price"].mean(), name="Mean")
+total = clean_df["revenue"].sum()
+count = clean_df["quantity"].sum()
+avg = total / count
+maxi = clean_df["revenue"].idxmax()
+mini = clean_df["revenue"].idxmin()
 
-count_df = pd.DataFrame(cdf)
-sum_df = pd.DataFrame(sdf)
+qdf = pd.Series(clean_df.groupby("product")["quantity"].sum(), name="Quantity")
+rdf = pd.Series(clean_df.groupby("product")["revenue"].sum(), name="Revenue")
+
+def grouped_weighted_avg(values, weights, by):
+    return (values * weights).groupby(by).sum() / weights.groupby(by).sum()
+
+mdf = grouped_weighted_avg(values=clean_df["revenue"], weights=clean_df["quantity"], by=clean_df["product"])
+mdf = pd.Series(mdf, name="Average")
+
+quant_df = pd.DataFrame(qdf)
+rev_df = pd.DataFrame(rdf)
 mean_df = pd.DataFrame(mdf)
 
-frames = [count_df, sum_df, mean_df]
+frames = [mean_df, quant_df, rev_df]
 table = pd.concat(frames, axis=1)
+
+print("=============== SALES REPORT ===============", "\n")
+print("Number of records: ", num)
+print("Total revenue: ", total)
+print("Average sale: ", avg)
+print("Highest revenue: ", clean_df.loc[maxi, "product"], "-", clean_df.loc[maxi, "revenue"])
+print("Lowest revenue: ", clean_df.loc[mini, "product"], "-", clean_df.loc[mini, "revenue"], "\n")
+print("---------------- BY PRODUCT ---------------")
 print(table, "\n")
+print("============================================","\n")
+print("Best product by revenue: ", rdf.idxmax())
+print("Total revenue:", rdf.max(), "\n")
+print("Best product by quantity: ", qdf.idxmax())
+print("Total sales:", qdf.max(), "\n")
 
-print("Best selling product: ", sdf.idxmax())
-print("Total sales:", sdf.max(), "\n")
-"""
-this part is related to previous version report
-print("Total sales: ", total)
-print("Average price: ", avg)
-print("Highest sale: ", df.loc[maxi, "product"], "-", df.loc[maxi, "price"])
-print("Lowest sale: ", df.loc[mini, "product"], "-", df.loc[mini, "price"])
-print(df.groupby("product")["price"].count())
-print(df.groupby("product")["price"].sum())
-"""
-
-
+# part 2: calculating of selected item
 prd_list = list(clean_df["product"])
 
-found = False
-while found == False:
-    selected = input("which product do you want to analyze? ").strip().lower()
-    for j in range(len(prd_list)):
-        if  (prd_list[j] == selected):
-            found = True
-            break;
+selected = input("which product do you want to analyze? ").strip().lower()
+x = 0
+for j in range(len(prd_list)):
+    if (prd_list[j] == selected):
+        break;
+    else:
+        x += 1
 
-clean_df["selected"] = (clean_df["product"] == selected)
+if (x == len(prd_list)):
+    print("product not found")
+else:
+    # add a column to df to identify selected rows
+    clean_df["selected"] = (clean_df["product"] == selected)
+    selected_df = clean_df.loc[clean_df["selected"]==True]
+    print("Product: ", selected)
+    print("Number of sales: ", selected_df["quantity"].sum())
+    print("Total revenue: ", selected_df["revenue"].sum())
+    avg_s = selected_df["revenue"].sum() / selected_df["quantity"].sum()
+    print("Average sale: ", avg_s)
+    print("Average price: ", selected_df["price"].mean())
 
-selected_df = clean_df.loc[clean_df["selected"]==True]
-print("Product: ", selected)
-print("Number of sales: ", selected_df["price"].count())
-print("Total sales: ", selected_df["price"].sum())
-print("Average sale: ", selected_df["price"].mean())
-
-if selected_df["price"].count() > 1:
-    print("Highest sale: ", selected_df["price"].max())
-    print("Lowest sale: ", selected_df["price"].min())
+    if selected_df["price"].count() > 1:
+        print("Highest revenue: ", selected_df["revenue"].max())
+        print("Lowest unit revenue: ", selected_df["revenue"].min())
+        print("Highest unit price: ", selected_df["price"].max())
+        print("Lowest unit price: ", selected_df["price"].min())
