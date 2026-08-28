@@ -1,0 +1,12 @@
+date,product,category,price,quantity
+2026-08-01,laptop,electronics,-1000,2
+2026-08-01,keyboard,electronics,180,5
+2026-08-01,laptop,electronics,1200,-2
+2026-08-01,laptop,electronics,ggg,8
+2026-08-01,desk,,1000,2
+2026-08-02,desk,furniture,180,6
+2026-08-01,,electronics,1000,2
+,laptop,electronics,1000,2
+202681,mouse,electronics,20,21
+123456,ram,electronics,800,4
+2026-09-02,carpet,furniture,1800,3
