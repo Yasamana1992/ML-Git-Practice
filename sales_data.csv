@@ -1,0 +1,17 @@
+order_id,date,customer,product,category,price,quantity
+1001,2026-06-01,Yasaman,laptop A,Electronics,1000,1
+1001,2026-06-01,Yasaman,mouse,Accessories,25,2
+1002,2026-06-03,Ali,laptop B,Electronics,1200,1
+1003,2026-06-05,Sara,keyboard,Accessories,80,2
+1004,2026-06-08,Ali,mouse,Accessories,25,3
+1005,2026-06-10,Yasaman,headphones,Accessories,150,1
+1005,2026-06-10,Yasaman,mouse,Accessories,25,1
+1006,2026-06-12,Reza,laptop A,Electronics,1000,2
+1007,2026-06-15,Sara,laptop B,Electronics,1200,1
+1008,2026-06-18,Ali,keyboard,Accessories,80,1
+1009,2026-06-20,Reza,headphones,Accessories,not_available,2
+1010,2026-06-22,Yasaman,laptop A,Electronics,1000,-1
+1011,2026-06-25,Sara,mouse,Accessories,25,2
+1012,2026-06-28,Ali,laptop A,Electronics,1000,1
+1013,2026-06-29,Reza,keyboard,Accessories,80,1
+1014,2026-06-30,Roz,keyboard,Accessories,80,1
