@@ -37,6 +37,13 @@ rev_df = pd.DataFrame(rev_seri)
 frames = [count_df, quant_df, rev_df]
 customer_df = pd.concat(frames, axis=1)
 
+def top_customers(dataframe, n, feature):
+    ftr_list = dataframe.columns
+    if feature in ftr_list:
+        return dataframe.nlargest(n, feature)
+    else:
+        return "feature not found"
+
 # average order value
 customer_df["AOV"] = customer_df["Customer Revenue"] / customer_df["Order Count"]
 
@@ -57,13 +64,13 @@ print("----------------- BY CUSTOMER ----------------")
 print(customer_df, "\n")
 print("==============================================","\n")
 print("Best 3 customers by revenue", "\n")
-print(customer_df.nlargest(3, ["Customer Revenue"]))
+print(top_customers(customer_df, 3, "Customer Revenue"))
 print("==============================================","\n")
 print("Best 3 customers by average order value")
-print(customer_df.nlargest(3, ["AOV"]))
+print(top_customers(customer_df, 3, "AOV"))
 print("==============================================","\n")
 print("Best 3 customers by quantity of orders (Loyal customer)")
-print(customer_df.nlargest(3, ["Order Count"]))
+print(top_customers(customer_df, 3, "Order Count"))
 print("==============================================","\n")
 print("Customers by just one order", selected_1)
 print("----------------------------------------------")
