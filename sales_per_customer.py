@@ -26,23 +26,36 @@ total_rev = df["revenue"].sum()
 sales_num = df["quantity"].sum()
 avg_per_unit = total_rev / sales_num
 
-count_seri = pd.Series(df.groupby("customer")["order_id"].nunique(), name="Order Count")
-quant_seri = pd.Series(df.groupby("customer")["quantity"].sum(), name="Quantity of Product")
-rev_seri = pd.Series(df.groupby("customer")["revenue"].sum(), name="Customer Revenue")
+def aggregation_df(dataframe, by, feature, operation, title):
+    opr_list = ["sum", "count", "nunique", "mean"]
 
-count_df = pd.DataFrame(count_seri)
-quant_df = pd.DataFrame(quant_seri)
-rev_df = pd.DataFrame(rev_seri)
+    if operation in opr_list:
+        grouped = dataframe.groupby(by)[feature]
+        opr = getattr(grouped, operation)()
+        seri = pd.Series(opr, name=title)
+        return pd.DataFrame(seri)
+    else:
+        return "operation not found"
+
+count_df = aggregation_df(df, "customer", "order_id", "nunique", "Order Count")
+quant_df = aggregation_df(df, "customer", "quantity", "sum", "Quantity of Product")
+rev_df = aggregation_df(df, "customer", "revenue", "sum", "Customer Revenue")
 
 frames = [count_df, quant_df, rev_df]
 customer_df = pd.concat(frames, axis=1)
 
-def top_customers(dataframe, n, feature):
+def top_reports(dataframe, n, feature):
     ftr_list = dataframe.columns
     if feature in ftr_list:
         return dataframe.nlargest(n, feature)
     else:
         return "feature not found"
+
+def print_top(dataframe, n, features):
+    for feature in features:
+        print("==============================================","\n")
+        print("Best", n, "customers by" ,feature , "\n")
+        print(top_reports(dataframe, n, feature))
 
 # average order value
 customer_df["AOV"] = customer_df["Customer Revenue"] / customer_df["Order Count"]
@@ -62,15 +75,8 @@ print("Highest revenue by customer: ", customer_df.loc[maxi], "-", customer_df.l
 print("Lowest revenue by customer: ", customer_df.loc[mini], "-", customer_df.loc[mini, "Customer Revenue"], "\n")
 print("----------------- BY CUSTOMER ----------------")
 print(customer_df, "\n")
-print("==============================================","\n")
-print("Best 3 customers by revenue", "\n")
-print(top_customers(customer_df, 3, "Customer Revenue"))
-print("==============================================","\n")
-print("Best 3 customers by average order value")
-print(top_customers(customer_df, 3, "AOV"))
-print("==============================================","\n")
-print("Best 3 customers by quantity of orders (Loyal customer)")
-print(top_customers(customer_df, 3, "Order Count"))
+features = ["Customer Revenue", "AOV", "Order Count"]
+print_top(customer_df, 3, features)
 print("==============================================","\n")
 print("Customers by just one order", selected_1)
 print("----------------------------------------------")
