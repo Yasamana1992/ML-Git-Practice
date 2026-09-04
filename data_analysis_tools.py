@@ -1,7 +1,7 @@
 import pandas as pd
 
 def statistics(df, features_list):
-    opr_list = ["sum", "mean", "max", "min", "count"]
+    opr_list = ["sum", "mean", "max", "min", "count", "idxmax", "idxmin"]
     features = df.columns
     seri = []
     not_found = 0
@@ -18,3 +18,13 @@ def statistics(df, features_list):
     else:
         sts_df = pd.DataFrame(seri)
         return sts_df
+
+def data_cleaner(dataframe, type, colomns):
+    if type == "number":
+        for col in colomns:
+            dataframe[col] = pd.to_numeric(dataframe[col], errors="coerce")
+            dataframe = dataframe[dataframe[col] > 0]
+    elif type == "date":
+        for col in colomns:
+            dataframe[col] = pd.to_datetime(dataframe[col], errors="coerce")
+    return dataframe.dropna()
