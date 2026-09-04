@@ -1,0 +1,13 @@
+date,category,description,amount,payment_method
+2026-01-03,Food,Restaurant,450000,Card
+2026-01-05,Transport,Taxi,180000,Cash
+2026-01-08,Shopping,Clothes,1200000,Card
+2026-01-12,Food,Supermarket,750000,Card
+2026-01-18,Bills,Internet,350000,Card
+2026-01-21,Transport,Bus,80000,Cash
+2026-02-02,Food,Restaurant,600000,Card
+2026-02-07,Shopping,Shoes,1800000,Card
+2026-02-11,Bills,Electricity,420000,Card
+2026-02-15,Food,Supermarket,900000,Cash
+2026-02-20,Transport,Taxi,250000,Cash
+2026-02-25,Entertainment,Cinema,300000,Card
