@@ -1,0 +1,11 @@
+customer,age,city,total_orders,total_spent,last_order_days_ago
+Sara,28,Tehran,12,18500000,5
+Ali,35,Shiraz,7,9200000,18
+Mina,24,Tehran,15,24600000,3
+Reza,42,Tabriz,4,5100000,65
+Neda,31,Tehran,9,13800000,12
+Arman,39,Shiraz,6,7600000,35
+Sina,27,Isfahan,11,15900000,8
+Maryam,45,Tehran,3,4200000,90
+Pouya,30,Isfahan,8,11200000,22
+Leila,26,Shiraz,13,20100000,6
