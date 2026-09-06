@@ -1,0 +1,11 @@
+product,category,stock,unit_price,sold_last_30_days,reorder_level
+Laptop,Electronics,12,45000000,8,10
+Mouse,Electronics,45,800000,32,20
+Keyboard,Electronics,18,1500000,15,15
+Monitor,Electronics,7,12000000,10,8
+Desk,Furniture,5,8500000,2,4
+Chair,Furniture,14,4200000,9,6
+Notebook,Stationery,80,120000,45,30
+Pen,Stationery,150,50000,90,60
+Headphone,Electronics,9,3500000,18,12
+Bookshelf,Furniture,3,6500000,1,3
