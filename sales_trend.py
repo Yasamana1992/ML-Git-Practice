@@ -51,8 +51,11 @@ print("Number of transactions: ", df.groupby("category")["product"].count())
 
 # plots
 size = df.groupby("year_month")["revenue"].sum()
-plt.pie(size, labels=size.index)
+size.index = size.index.astype(str)
+size.plot()
 plt.title("Revenue per month")
+plt.xlabel("Month")
+plt.ylabel("Revenue")
 plt.show()
 
 size = df.groupby("product")["revenue"].sum()
