@@ -27,9 +27,6 @@ df_cohort["cohort_month"] = df_cohort["year_month"]
 df_cohort = df_cohort.reset_index()
 new_df = df.merge(right=df_cohort[["cohort_month", "customer"]], how="right", on="customer")
 
-# cohort size
-cohort_size = new_df.groupby(["cohort_month", "year_month"])["customer"].nunique()
-
 new_df["cohort_size"] = (new_df.groupby("cohort_month")["customer"].transform("nunique"))
 selected_df = new_df[["customer", "year_month", "cohort_month", "cohort_size"]]
 cohort_table = selected_df.groupby(["cohort_month", "year_month", "cohort_size"])["customer"].nunique().reset_index(name="active")
@@ -42,13 +39,6 @@ print(cohort_table)
 print(new_df.groupby(["cohort_month", "year_month"])["customer"].unique())
 
 # plots
-size = cohort_table.groupby("cohort_month")["%Retention"].mean()
-size.plot()
-plt.title("Average retention per month")
-plt.xlabel("Month")
-plt.ylabel("Retention")
-plt.show()
-
 cohort_retention = cohort_table.pivot(index="cohort_month", columns="year_month", values="%Retention")
 print(cohort_retention)
 
