@@ -1,0 +1,13 @@
+customer,age,city,months_active,total_orders,total_spent,last_order_days_ago,support_tickets,churned
+Sara,28,Tehran,24,18,32400000,12,1,No
+Ali,35,Shiraz,18,7,9800000,65,4,Yes
+Mina,24,Tehran,30,25,47500000,8,0,No
+Reza,42,Tabriz,12,4,5200000,120,6,Yes
+Neda,31,Tehran,20,14,22400000,15,2,No
+Arman,39,Shiraz,15,9,13500000,75,5,Yes
+Sina,27,Isfahan,28,21,35700000,10,1,No
+Maryam,45,Tehran,10,5,6500000,95,7,Yes
+Pouya,30,Isfahan,16,11,19800000,25,2,No
+Leila,26,Shiraz,22,16,30400000,18,1,No
+Hamed,38,Tehran,14,6,8700000,80,5,Yes
+Parisa,29,Shiraz,26,19,28600000,14,1,No
