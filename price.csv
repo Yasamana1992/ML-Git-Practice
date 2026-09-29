@@ -1,0 +1,13 @@
+product,category,unit_price,units_sold,discount,rating
+Laptop,Electronics,45000000,25,5,4.7
+Mouse,Electronics,800000,120,10,4.2
+Keyboard,Electronics,1500000,75,8,4.4
+Monitor,Electronics,12000000,30,7,4.6
+Chair,Furniture,4200000,45,5,4.3
+Desk,Furniture,8500000,20,10,4.5
+Notebook,Stationery,120000,200,5,4.1
+Pen,Stationery,50000,350,8,4.0
+Headphone,Electronics,3500000,60,12,4.5
+Bookshelf,Furniture,6500000,15,6,4.2
+Tablet,Electronics,18000000,35,9,4.6
+Lamp,Furniture,2200000,55,7,4.1
