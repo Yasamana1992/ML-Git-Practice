@@ -76,3 +76,25 @@ print("Accuracy Score Decision Tree: ", acc_tree)
 print("Train Accuracy: ", train_acc)
 print("Confusion Matrix Decision Tree: ", cnf_tree)
 print("Classification Report Decision Tree: ", cls_report_tree)
+
+# effect of max depth
+result = []
+
+for i in range(3):
+    a = i+1
+    model_tree = DecisionTreeClassifier(max_depth=a, random_state=42)
+    model_tree.fit(X_train, y_train)
+    y_pred_tree = model_tree.predict(X_test)
+    y_pred_tree_train = model_tree.predict(X_train)
+    acc_tree = accuracy_score(y_true=y_test, y_pred=y_pred_tree)
+    train_acc = accuracy_score(y_true=y_train, y_pred=y_pred_tree_train)
+    result.append({"Depth" : i+1 , "Actual Tree Depth" : model_tree.tree_.max_depth , "Train Accuracy" : train_acc , "Test Accuracy" : acc_tree})
+
+result_df = pd.DataFrame(result)
+print(result_df)
+
+# effect of any feature
+model_depth1 = DecisionTreeClassifier(max_depth=1, random_state=42)
+model_depth1.fit(X_train, y_train)
+
+print(model_depth1.feature_importances_)
