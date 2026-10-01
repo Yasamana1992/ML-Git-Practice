@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
 
 # load data
 while True:
@@ -37,11 +38,13 @@ model.fit(X_train, y_train)
 # prediction
 y_pred = model.predict(X_test)
 y_pred_prob = model.predict_proba(X_test)
+y_pred_train = model.predict(X_train)
 
 # evaluation
 acc = accuracy_score(y_true=y_test, y_pred=y_pred)
 cnf = confusion_matrix(y_true=y_test, y_pred=y_pred)
 cls_report = classification_report(y_true=y_test, y_pred=y_pred)
+acc_train = accuracy_score(y_true=y_train, y_pred=y_pred_train)
 
 print(y_pred)
 print(y_pred_prob)
@@ -69,11 +72,11 @@ y_pred_tree_train = model_tree.predict(X_train)
 acc_tree = accuracy_score(y_true=y_test, y_pred=y_pred_tree)
 cnf_tree = confusion_matrix(y_true=y_test, y_pred=y_pred_tree)
 cls_report_tree = classification_report(y_true=y_test, y_pred=y_pred_tree)
-train_acc = accuracy_score(y_true=y_train, y_pred=y_pred_tree_train)
+acc_tree_train = accuracy_score(y_true=y_train, y_pred=y_pred_tree_train)
 
 print(y_pred_tree)
 print("Accuracy Score Decision Tree: ", acc_tree)
-print("Train Accuracy: ", train_acc)
+print("Train Accuracy: ", acc_tree_train)
 print("Confusion Matrix Decision Tree: ", cnf_tree)
 print("Classification Report Decision Tree: ", cls_report_tree)
 
@@ -98,3 +101,37 @@ model_depth1 = DecisionTreeClassifier(max_depth=1, random_state=42)
 model_depth1.fit(X_train, y_train)
 
 print(model_depth1.feature_importances_)
+
+# Random Forest Classification
+# model and fitting
+model_rf = RandomForestClassifier(n_estimators=100, random_state=42)
+model_rf.fit(X_train, y_train)
+
+# prediction
+y_pred_rf = model_rf.predict(X_test)
+y_pred_rf_train = model_rf.predict(X_train)
+
+# evaluation
+acc_rf = accuracy_score(y_true=y_test, y_pred=y_pred_rf)
+acc_rf_train = accuracy_score(y_true=y_train, y_pred=y_pred_rf_train)
+cnf_rf = confusion_matrix(y_true=y_test, y_pred=y_pred_rf)
+cls_report_rf = classification_report(y_true=y_test, y_pred=y_pred_rf)
+
+print(y_pred_rf)
+print("Random Forest Accuracy Score: ", acc_rf)
+print("Random Forest Train Accuracy: ", acc_rf_train)
+print("Random Forest Confusion Matrix: ", cnf_rf)
+print("Random Forest Classification Report: ", cls_report_rf)
+
+# feature importance
+print(model_rf.feature_importances_)
+
+# overall result
+overall_result = [
+    {"Model" : "Logistic Regression" , "Train Accuracy" : acc_train , "Test Accuracy" : acc},
+    {"Model" : "Decision Tree Classifier" , "Train Accuracy" : acc_tree_train , "Test Accuracy" : acc_tree},
+    {"Model" : "Random Forest Classifier" , "Train Accuracy" : acc_rf_train , "Test Accuracy" : acc_rf}
+]
+
+overall_df = pd.DataFrame(overall_result)
+print(overall_df)
