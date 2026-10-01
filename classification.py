@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+from sklearn.tree import DecisionTreeClassifier
 
 # load data
 while True:
@@ -50,5 +51,28 @@ print("Classification Report: ", cls_report)
 
 X_eval = [[40, 400000, 6, 50, 4]]
 y_eval = model.predict(X_eval)
+y_eval_prob = model.predict_proba(X_eval)
 
 print("Evaluation for new data ([40, 400000, 6, 50, 4]):", y_eval)
+print("Probability:", y_eval_prob)
+
+# Decision tree classification
+# model and fit
+model_tree = DecisionTreeClassifier(random_state=42)
+model_tree.fit(X_train, y_train)
+
+# prediction
+y_pred_tree = model_tree.predict(X_test)
+y_pred_tree_train = model_tree.predict(X_train)
+
+# evaluation
+acc_tree = accuracy_score(y_true=y_test, y_pred=y_pred_tree)
+cnf_tree = confusion_matrix(y_true=y_test, y_pred=y_pred_tree)
+cls_report_tree = classification_report(y_true=y_test, y_pred=y_pred_tree)
+train_acc = accuracy_score(y_true=y_train, y_pred=y_pred_tree_train)
+
+print(y_pred_tree)
+print("Accuracy Score Decision Tree: ", acc_tree)
+print("Train Accuracy: ", train_acc)
+print("Confusion Matrix Decision Tree: ", cnf_tree)
+print("Classification Report Decision Tree: ", cls_report_tree)
