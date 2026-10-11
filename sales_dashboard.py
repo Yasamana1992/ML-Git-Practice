@@ -26,7 +26,7 @@ month_df = df.groupby("year_month").agg(
     revenue=("revenue" , 'sum'),
     quantity=("quantity" , 'sum'),
     transactions=("revenue" , 'count'),
-    avg_transactions=("revenue" , 'mean')
+    avg_transactions_revenue=("revenue" , 'mean')
 )
 month_df["revenue_growth"] = month_df[["revenue"]].pct_change() * 100
 
