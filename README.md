@@ -4,23 +4,29 @@
 
 This project analyzes sales data from a CSV file containing the date, product, category, quantity, and unit price of each transaction.
 
-It generates an overview of business performance, including total revenue, total quantity sold, total number of transactions, monthly sales trends, and revenue by product.
+It generates an overview of business performance reports, including total revenue, total quantity sold, total number of transactions, monthly sales trends, and revenue by product, and revenue by category.
 
-The dashboard also identifies the top product by revenue and calculates the combined revenue share of the three products with the highest revenue. This helps highlight potential revenue concentration.
+The dashboard also identifies the top product by revenue and calculates the combined revenue share of the three products with the highest revenue. This metrics helps highlight potential revenue concentration in the dataset.
 
 ## Key Findings
 
-### In the current dataset:
+### Based on the current dataset:
 
-- Laptops are the top product by revenue, generating 360,000,000 in revenue.
-- The top three products account for approximately 97.6% of total revenue, indicating a high concentration of revenue among a small number of products.
+- Top product: Laptops, generating 360,000,000 in revenue.
+- Revenue concentration: The three highest-revenue products account for approximately 97.6% of total revenue.
+- Top category: Electronics, generating 388,000,000, or approximately 84.8% of total revenue.
+- Monthly trend: Revenue increased by approximately 15.7% in February and decreased by approximately 29.6% in March compared with the previous month.
+
+These findings describe the available dataset and should not be interpreted as definitive conclusions about long-term business performance.
 
 ## How to Run
 
-Run the Python sales_dashboard.py and enter the CSV filename (in this case "sales") when prompted. The dashboard will process the data and display the sales reports.
+Run "sales_dashboard.py" and enter the CSV filename when prompted. For the included dataset, enter "sales".
+
+The dashboard will process the data and display the monthly, product, and category reports, along with a business summary.
 
 ## Limitations
 
-The current dashboard does not provide sales reports by category. Although the dataset includes a category column, category-level sales performance is not yet analyzed. One of the limitation has been fixed in the improved version. The dashboard now includes category-level sales analysis. The category report summarizes total revenue, total quantity sold, transaction count, and each category’s percentage share of total revenue.
+The current analysis focuses on revenue and sales quantities. It does not include profit margins, operating costs, inventory levels, or future sales forecasts.
 
-The analysis is based on the available dataset and does not include profit margins, costs, inventory levels, or future sales forecasts.
+The dataset covers only three months, so the monthly trends are insufficient to establish long-term patterns. The findings also depend on the quality and representativeness of the available data
