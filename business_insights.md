@@ -16,4 +16,4 @@ Review the sales performance of products outside the top three to identify oppor
 Because laptops account for a large share of total revenue, the business may be exposed to product concentration risk. Consider evaluating opportunities to diversify revenue sources while assessing customer demand, profit margins, and supply constraints before making inventory decisions.
 
 ## 3.Limitations
-This analysis covers only three months of data and does not include profit margins, costs, inventory levels, or customer demand. Therefore, revenue figures alone are insufficient to determine product profitability or make definitive inventory decisions. Further analysis by product category, unit price, sales volume, and profit margin would provide more actionable insights.
+This analysis covers only three months of data and does not include profit margins, costs, inventory levels, or customer demand. Therefore, revenue figures alone are insufficient to determine product profitability or make definitive inventory decisions. Further analysis by unit price, sales volume, and profit margin would provide more actionable insights.

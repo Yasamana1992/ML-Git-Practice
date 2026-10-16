@@ -21,6 +21,6 @@ Run the Python sales_dashboard.py and enter the CSV filename (in this case "sale
 
 ## Limitations
 
-The current dashboard does not provide sales reports by category. Although the dataset includes a category column, category-level sales performance is not yet analyzed.
+The current dashboard does not provide sales reports by category. Although the dataset includes a category column, category-level sales performance is not yet analyzed. One of the limitation has been fixed in the improved version. The dashboard now includes category-level sales analysis. The category report summarizes total revenue, total quantity sold, transaction count, and each category’s percentage share of total revenue.
 
 The analysis is based on the available dataset and does not include profit margins, costs, inventory levels, or future sales forecasts.
