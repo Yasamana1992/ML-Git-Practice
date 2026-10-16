@@ -2,7 +2,7 @@ import pandas as pd
 from data_analysis_tools import data_cleaner
 import matplotlib.pyplot as plt
 
-# load data
+# loading data
 while True:
     try:
         df = pd.read_csv(input("What is the file name? ")+'.csv')

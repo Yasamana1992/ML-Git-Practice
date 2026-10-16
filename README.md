@@ -6,7 +6,7 @@ This project analyzes sales data from a CSV file containing the date, product, c
 
 It generates an overview of business performance reports, including total revenue, total quantity sold, total number of transactions, monthly sales trends, and revenue by product, and revenue by category.
 
-The dashboard also identifies the top product by revenue and calculates the combined revenue share of the three products with the highest revenue. This metrics helps highlight potential revenue concentration in the dataset.
+The dashboard also identifies the top product by revenue and calculates the combined revenue share of the three products with the highest revenue. This metrics help highlight potential revenue concentration in the dataset.
 
 ## Key Findings
 
